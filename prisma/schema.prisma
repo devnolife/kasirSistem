@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum role {
+  admin
+  kasir
+}
+
+model users {
+  id          Int      @id @default(autoincrement())
+  username    String   @unique
+  nama       String
+  password    String
+  role        role    @default(kasir)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now())
+  akun         akun?
+  sesi        session[]
+  penerimaanKas penerimaan_kas[]
+  pengeluaranKas pengeluaran_kas[]
+}
+
+model akun {
+  id          Int      @id @default(autoincrement())
+  user_id    Int     @unique
+  access_token String?
+  jenis_token String?
+  expires_at Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  user        users   @relation(fields: [user_id], references: [id])
+}
+
+model session {
+  id           String   @id @default(cuid())
+  tokenSesi    String   @unique
+  user_id      Int
+  berakhirPada DateTime
+  pengguna     users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model penerimaan_kas {
+  id           Int      @id @default(autoincrement())
+  jenisNota   jenis_nota
+  nomorNota    String   @unique
+  nilai        Float
+  keterangan   String?
+  createdAt    DateTime @default(now())
+  user_id      Int
+  user        users    @relation(fields: [user_id], references: [id])
+}
+
+model pengeluaran_kas {
+  id           Int      @id @default(autoincrement())
+  nilai        Float
+  keterangan   String?
+  user_id      Int
+  user        users    @relation(fields: [user_id], references: [id])
+  createdAt    DateTime @default(now())
+}
+
+model manajemen_kas {
+  id           Int      @id @default(autoincrement())
+  pecahan      Int
+  jumlah       Int
+  total        Float
+  createdAt    DateTime @default(now())
+}
+
+model verification_token {
+  identifikator String
+  token         String   @unique
+  berakhirPada  DateTime
+
+  @@unique([identifikator, token])
+}
+
+enum jenis_nota {
+  INCP
+  INVC
+}
