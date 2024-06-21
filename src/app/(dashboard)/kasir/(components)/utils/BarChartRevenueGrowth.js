@@ -122,11 +122,11 @@ const BarChartRevenueGrowth = ({ serverMode }) => {
       <CardContent className='flex justify-between gap-2'>
         <div className='flex flex-col justify-between'>
           <div className='flex flex-col gap-y-2'>
-            <Typography variant='h5'>Revenue Growth</Typography>
+            <Typography variant='h5'>Pengeluaran Kas Perhari</Typography>
             <Typography>Weekly Report</Typography>
           </div>
-          <div className='flex flex-col gap-y-2 items-start'>
-            <Typography variant='h3'>$4,673</Typography>
+          <div className='flex flex-col items-start gap-y-2'>
+            <Typography variant='h3'>Rp.450440</Typography>
             <Chip variant='tonal' size='small' color='success' label='+15.2%' />
           </div>
         </div>
