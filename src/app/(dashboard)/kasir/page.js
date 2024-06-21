@@ -158,7 +158,7 @@ const InvoiceListTable = () => {
       columnHelper.accessor('issuedDate', {
         header: 'Tanggal Dikeluarkan',
         cell: ({ row }) => <Typography>{row.original.issuedDate}</Typography>
-      }),
+      }),c
       columnHelper.accessor('action', {
         header: 'Action',
         cell: ({ row }) => (
