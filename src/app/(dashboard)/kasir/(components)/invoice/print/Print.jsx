@@ -63,16 +63,16 @@ const PrintPage = ({ invoiceData, id }) => {
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
-        <div className='p-6 bg-actionHover rounded'>
-          <div className='flex justify-between gap-y-4 flex-col sm:flex-row'>
+        <div className='p-6 rounded bg-actionHover'>
+          <div className='flex flex-col justify-between gap-y-4 sm:flex-row'>
             <div className='flex flex-col gap-6'>
               <div className='flex items-center gap-2.5'>
                 <Logo />
               </div>
               <div>
-                <Typography color='text.primary'>Office 149, 450 South Brand Brooklyn</Typography>
-                <Typography color='text.primary'>San Diego County, CA 91905, USA</Typography>
-                <Typography color='text.primary'>+1 (123) 456 7891, +44 (876) 543 2198</Typography>
+                <Typography color='text.primary'>Jl. Sulawesi No.360, Butung, Kec. Wajo</Typography>
+                <Typography color='text.primary'>Kota Makassar, Sulawesi Selatan 90164</Typography>
+                <Typography color='text.primary'>+04113610620</Typography>
               </div>
             </div>
             <div className='flex flex-col gap-6'>
@@ -136,40 +136,40 @@ const PrintPage = ({ invoiceData, id }) => {
         <div className='overflow-x-auto border rounded'>
           <table className={tableStyles.table}>
             <thead>
-            <tr className='border-be'>
-              <th className='!bg-transparent'>Item</th>
-              <th className='!bg-transparent'>Description</th>
-              <th className='!bg-transparent'>Hours</th>
-              <th className='!bg-transparent'>Qty</th>
-              <th className='!bg-transparent'>Total</th>
-            </tr>
+              <tr className='border-be'>
+                <th className='!bg-transparent'>Item</th>
+                <th className='!bg-transparent'>Description</th>
+                <th className='!bg-transparent'>Hours</th>
+                <th className='!bg-transparent'>Qty</th>
+                <th className='!bg-transparent'>Total</th>
+              </tr>
             </thead>
             <tbody>
-            {data.map((item, index) => (
-              <tr key={index}>
-                <td>
-                  <Typography color='text.primary'>{item.Item}</Typography>
-                </td>
-                <td>
-                  <Typography color='text.primary'>{item.Description}</Typography>
-                </td>
-                <td>
-                  <Typography color='text.primary'>{item.Hours}</Typography>
-                </td>
-                <td>
-                  <Typography color='text.primary'>{item.Qty}</Typography>
-                </td>
-                <td>
-                  <Typography color='text.primary'>{item.Total}</Typography>
-                </td>
-              </tr>
-            ))}
+              {data.map((item, index) => (
+                <tr key={index}>
+                  <td>
+                    <Typography color='text.primary'>{item.Item}</Typography>
+                  </td>
+                  <td>
+                    <Typography color='text.primary'>{item.Description}</Typography>
+                  </td>
+                  <td>
+                    <Typography color='text.primary'>{item.Hours}</Typography>
+                  </td>
+                  <td>
+                    <Typography color='text.primary'>{item.Qty}</Typography>
+                  </td>
+                  <td>
+                    <Typography color='text.primary'>{item.Total}</Typography>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
       </Grid>
       <Grid item xs={12}>
-        <div className='flex justify-between flex-col gap-y-4 sm:flex-row'>
+        <div className='flex flex-col justify-between gap-y-4 sm:flex-row'>
           <div className='flex flex-col gap-1 order-2 sm:order-[unset]'>
             <div className='flex items-center gap-2'>
               <Typography className='font-medium' color='text.primary'>

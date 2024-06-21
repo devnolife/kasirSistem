@@ -1,9 +1,7 @@
 'use client'
 import { useState, useEffect, useMemo } from 'react'
-
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Button from '@mui/material/Button'
@@ -151,7 +149,7 @@ const InvoiceListTable = () => {
         )
       }),
       columnHelper.accessor('total', {
-        header: 'Nominal  ',
+        header: 'Nilai (Rp)  ',
         cell: ({ row }) => <Typography>{`Rp.${row.original.total}`}</Typography>
       }),
       columnHelper.accessor('issuedDate', {

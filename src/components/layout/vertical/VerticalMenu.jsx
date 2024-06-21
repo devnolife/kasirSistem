@@ -66,10 +66,10 @@ const VerticalMenu = ({ scrollMenu }) => {
         <MenuItem href='/admin' icon={<i className='tabler-info-circle' />}>
           Admin
         </MenuItem>
-        <MenuItem href='/invoice' icon={<i className='tabler-info-circle' />}>
+        {/* <MenuItem href='/invoice' icon={<i className='tabler-info-circle' />}>
           Invoice
-        </MenuItem>
-        <SubMenu
+        </MenuItem> */}
+        {/* <SubMenu
           label='Kas'
           icon={<i className='tabler-file-description' />}>
           <MenuItem
@@ -78,7 +78,7 @@ const VerticalMenu = ({ scrollMenu }) => {
           <MenuItem
             label='Pemasukan Kas'
             href='/invoice' icon={<i className='tabler-info-circle' />}>Pemasukan Kas</MenuItem>
-        </SubMenu>
+        </SubMenu> */}
       </Menu>
 
       {/* <Menu

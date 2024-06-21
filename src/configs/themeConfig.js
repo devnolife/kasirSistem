@@ -16,8 +16,8 @@
  * Another way is to clear the cookie from the browser's Application/Storage tab and then reload the page.
  */
 const themeConfig = {
-  templateName: 'Vuexy',
-  settingsCookieName: 'vuexy-mui-next-demo-1',
+  templateName: 'Kasir Sistem',
+  settingsCookieName: 'Kasir Sistema Settings',
   mode: 'system', // 'system', 'light', 'dark'
   skin: 'default', // 'default', 'bordered'
   semiDark: false, // true, false

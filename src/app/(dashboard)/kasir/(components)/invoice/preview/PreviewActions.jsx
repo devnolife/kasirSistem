@@ -32,7 +32,7 @@ const PreviewActions = ({ id }) => {
             startIcon={<i className='tabler-send' />}
             onClick={() => setSendDrawerOpen(true)}
           >
-            Send Invoice
+            Kirim Invoice
           </Button>
           <Button fullWidth color='secondary' variant='tonal' className='capitalize'>
             Download
@@ -60,16 +60,6 @@ const PreviewActions = ({ id }) => {
               Edit
             </Button>
           </div>
-          <Button
-            fullWidth
-            color='success'
-            variant='contained'
-            className='capitalize'
-            onClick={() => setPaymentDrawerOpen(true)}
-            startIcon={<i className='tabler-currency-dollar' />}
-          >
-            Add Payment
-          </Button>
         </CardContent>
       </Card>
       <AddPaymentDrawer open={paymentDrawerOpen} handleClose={() => setPaymentDrawerOpen(false)} />

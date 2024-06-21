@@ -35,6 +35,7 @@ const InvoiceForm = () => {
   const [dueDate, setDueDate] = useState(null)
   const [formData, setFormData] = useState(initialFormData)
   const [open, setOpen] = useState(false)
+  const [count, setCount] = useState(1)
   const isBelowMdScreen = useMediaQuery(theme => theme.breakpoints.down('md'))
   const isBelowSmScreen = useMediaQuery(theme => theme.breakpoints.down('sm'))
 
@@ -52,16 +53,16 @@ const InvoiceForm = () => {
       <CardContent className='sm:!p-12'>
         <Grid container spacing={6}>
           <Grid item xs={12}>
-            <div className='p-6 bg-actionHover rounded'>
-              <div className='flex justify-between gap-4 flex-col sm:flex-row'>
+            <div className='p-6 rounded bg-actionHover'>
+              <div className='flex flex-col justify-between gap-4 sm:flex-row'>
                 <div className='flex flex-col gap-6'>
                   <div className='flex items-center gap-2.5'>
                     <Logo />
                   </div>
                   <div>
-                    <Typography color='text.primary'>Office 149, 450 South Brand Brooklyn</Typography>
-                    <Typography color='text.primary'>San Diego County, CA 91905, USA</Typography>
-                    <Typography color='text.primary'>+1 (123) 456 7891, +44 (876) 543 2198</Typography>
+                    <Typography color='text.primary'>Jl. Sulawesi No.360, Butung, Kec. Wajo</Typography>
+                    <Typography color='text.primary'>Kota Makassar, Sulawesi Selatan 90164</Typography>
+                    <Typography color='text.primary'>+04113610620</Typography>
                   </div>
                 </div>
                 <div className='flex flex-col gap-2'>
@@ -80,7 +81,7 @@ const InvoiceForm = () => {
                   </div>
                   <div className='flex items-center'>
                     <Typography className='min-is-[95px] mie-4' color='text.primary'>
-                      Date Issued:
+                      Tanggal Awal:
                     </Typography>
                     <AppReactDatepicker
                       boxProps={{ className: 'is-full' }}
@@ -93,7 +94,7 @@ const InvoiceForm = () => {
                   </div>
                   <div className='flex items-center'>
                     <Typography className='min-is-[95px] mie-4' color='text.primary'>
-                      Date Due:
+                      Tanggal Akhir:
                     </Typography>
                     <AppReactDatepicker
                       boxProps={{ className: 'is-full' }}
@@ -108,92 +109,11 @@ const InvoiceForm = () => {
               </div>
             </div>
           </Grid>
-
-          <Grid item xs={12}>
-            <div className='flex justify-between flex-col gap-4 flex-wrap sm:flex-row'>
-              <div className='flex flex-col gap-4'>
-                <Typography className='font-medium' color='text.primary'>
-                  Invoice To:
-                </Typography>
-                <CustomTextField
-                  select
-                  className={classnames('min-is-[220px]', { 'is-1/2': isBelowSmScreen })}
-                  value={selectData?.id || ''}
-                  onChange={e => {
-                    setFormData({})
-                    setSelectData(fakeData.slice(0, 5).filter(item => item.id === e.target.value)[0])
-                  }}
-                >
-                  <MenuItem
-                    className='flex items-center gap-2 !text-success !bg-transparent hover:text-success hover:!bg-[var(--mui-palette-success-lightOpacity)]'
-                    value=''
-                    onClick={() => {
-                      setSelectData(null)
-                      setOpen(true)
-                    }}
-                  >
-                    <i className='tabler-plus text-base' />
-                    Add New Customer
-                  </MenuItem>
-                  {fakeData.slice(0, 5).map((invoice, index) => (
-                    <MenuItem key={index} value={invoice.id}>
-                      {invoice.name}
-                    </MenuItem>
-                  ))}
-                </CustomTextField>
-                {selectData?.id ? (
-                  <div>
-                    <Typography>{selectData?.name}</Typography>
-                    <Typography>{selectData?.company}</Typography>
-                    <Typography>{selectData?.address}</Typography>
-                    <Typography>{selectData?.contact}</Typography>
-                    <Typography>{selectData?.companyEmail}</Typography>
-                  </div>
-                ) : (
-                  <div>
-                    <Typography>{formData?.name}</Typography>
-                    <Typography>{formData?.company}</Typography>
-                    <Typography>{formData?.address}</Typography>
-                    <Typography>{formData?.contactNumber}</Typography>
-                    <Typography>{formData?.email}</Typography>
-                  </div>
-                )}
-              </div>
-              <div className='flex flex-col gap-4'>
-                <Typography className='font-medium' color='text.primary'>
-                  Bill To:
-                </Typography>
-                <div>
-                  <div className='flex items-center gap-4'>
-                    <Typography className='min-is-[100px]'>Total Due:</Typography>
-                    <Typography>$12,110.55</Typography>
-                  </div>
-                  <div className='flex items-center gap-4'>
-                    <Typography className='min-is-[100px]'>Bank name:</Typography>
-                    <Typography>American Bank</Typography>
-                  </div>
-                  <div className='flex items-center gap-4'>
-                    <Typography className='min-is-[100px]'>Country:</Typography>
-                    <Typography>United States</Typography>
-                  </div>
-                  <div className='flex items-center gap-4'>
-                    <Typography className='min-is-[100px]'>IBAN:</Typography>
-                    <Typography>ETD95476213874685</Typography>
-                  </div>
-                  <div className='flex items-center gap-4'>
-                    <Typography className='min-is-[100px]'>SWIFT code:</Typography>
-                    <Typography>BR91905</Typography>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Grid>
-
           <Grid item xs={12}>
             <Divider className='border-dashed' />
           </Grid>
           <Grid item xs={12}>
-            {Array.from(Array(1).keys()).map((item, index) => (
+            {Array.from(Array(count).keys()).map((item, index) => (
               <div
                 key={index}
                 className={classnames('repeater-item flex relative mbe-4 border rounded', {
@@ -203,62 +123,35 @@ const InvoiceForm = () => {
                 })}
               >
                 <Grid container spacing={5} className='m-0 pbe-5'>
-                  <Grid item lg={6} md={5} xs={12}>
-                    <Typography className='font-medium md:absolute md:-top-8' color='text.primary'>
-                      Item
-                    </Typography>
-                    <CustomTextField select fullWidth defaultValue='App Design' className='mbe-5'>
-                      <MenuItem value='App Design'>App Design</MenuItem>
-                      <MenuItem value='App Customization'>App Customization</MenuItem>
-                      <MenuItem value='ABC Template'>ABC Template</MenuItem>
-                      <MenuItem value='App Development'>App Development</MenuItem>
-                    </CustomTextField>
-                    <CustomTextField rows={2} fullWidth multiline defaultValue='Customization & Bug Fixes' />
-                  </Grid>
-                  <Grid item lg={2} md={3} xs={12}>
-                    <Typography className='font-medium md:absolute md:-top-8'>Cost</Typography>
-                    <CustomTextField
-                      {...(isBelowMdScreen && { fullWidth: true })}
-                      type='number'
-                      placeholder='24'
-                      defaultValue='24'
-                      className='mbe-5'
-                      InputProps={{ inputProps: { min: 0 } }}
-                    />
-                    <div className='flex flex-col'>
-                      <Typography component='span' color='text.primary'>
-                        Discount:
-                      </Typography>
-                      <div className='flex gap-2'>
-                        <Typography component='span' color='text.primary'>
-                          0%
-                        </Typography>
-                        <Tooltip title='Tax 1' placement='top'>
-                          <Typography component='span' color='text.primary'>
-                            0%
-                          </Typography>
-                        </Tooltip>
-                        <Tooltip title='Tax 2' placement='top'>
-                          <Typography component='span' color='text.primary'>
-                            0%
-                          </Typography>
-                        </Tooltip>
-                      </div>
-                    </div>
-                  </Grid>
                   <Grid item md={2} xs={12}>
-                    <Typography className='font-medium md:absolute md:-top-8'>Hours</Typography>
+                    <Typography className='font-medium md:absolute md:-top-8'>No Nota</Typography>
                     <CustomTextField
                       {...(isBelowMdScreen && { fullWidth: true })}
-                      type='number'
                       placeholder='1'
                       defaultValue='1'
                       InputProps={{ inputProps: { min: 0 } }}
                     />
                   </Grid>
-                  <Grid item md={2} xs={12}>
-                    <Typography className='font-medium md:absolute md:-top-8'>Price</Typography>
-                    <Typography>$24.00</Typography>
+                  <Grid item lg={6} md={5} xs={12}>
+                    <Typography className='font-medium md:absolute md:-top-8' color='text.primary'>
+                      Jenis Kas
+                    </Typography>
+                    <CustomTextField select fullWidth defaultValue='App Design' className='mbe-5'>
+                      <MenuItem value='App Design'>Pengeluaran Kas</MenuItem>
+                      <MenuItem value='App Customization'>Pemasukan Kas</MenuItem>
+                    </CustomTextField>
+                    <CustomTextField rows={2} fullWidth multiline defaultValue='Keterangan Kas' />
+                  </Grid>
+                  <Grid item lg={2} md={3} xs={12}>
+                    <Typography className='font-medium md:absolute md:-top-8'>Nilai (Rp)</Typography>
+                    <CustomTextField
+                      {...(isBelowMdScreen && { fullWidth: true })}
+                      type='number'
+                      placeholder='24000'
+                      defaultValue='2400'
+                      className='mbe-5'
+                      InputProps={{ inputProps: { min: 0 } }}
+                    />
                   </Grid>
                 </Grid>
                 <div className='flex flex-col justify-start border-is'>
@@ -275,7 +168,7 @@ const InvoiceForm = () => {
                 onClick={() => setCount(count + 1)}
                 startIcon={<i className='tabler-plus' />}
               >
-                Add Item
+                Tambah Invoice
               </Button>
             </Grid>
           </Grid>
@@ -283,40 +176,34 @@ const InvoiceForm = () => {
             <Divider className='border-dashed' />
           </Grid>
           <Grid item xs={12}>
-            <div className='flex justify-between flex-col gap-4 sm:flex-row'>
+            <div className='flex flex-col justify-between gap-4 sm:flex-row'>
               <div className='flex flex-col gap-4 order-2 sm:order-[unset]'>
                 <div className='flex items-center gap-2'>
                   <Typography className='font-medium' color='text.primary'>
-                    Salesperson:
+                    Kasir:
                   </Typography>
-                  <CustomTextField defaultValue='Tommy Shelby' />
+                  <CustomTextField defaultValue='Angel' />
                 </div>
-                <CustomTextField placeholder='Thanks for your business' />
+                <CustomTextField placeholder='Catatan ...' />
               </div>
               <div className='min-is-[200px]'>
                 <div className='flex items-center justify-between'>
-                  <Typography>Subtotal:</Typography>
+                  <Typography>Pemasukan:</Typography>
                   <Typography className='font-medium' color='text.primary'>
-                    $1800
+                    Rp.1800
                   </Typography>
                 </div>
                 <div className='flex items-center justify-between'>
-                  <Typography>Discount:</Typography>
+                  <Typography>Pengeluaran:</Typography>
                   <Typography className='font-medium' color='text.primary'>
-                    $28
-                  </Typography>
-                </div>
-                <div className='flex items-center justify-between'>
-                  <Typography>Tax:</Typography>
-                  <Typography className='font-medium' color='text.primary'>
-                    21%
+                    Rp.28
                   </Typography>
                 </div>
                 <Divider className='mlb-2' />
                 <div className='flex items-center justify-between'>
                   <Typography>Total:</Typography>
                   <Typography className='font-medium' color='text.primary'>
-                    $1690
+                    Rp.1828
                   </Typography>
                 </div>
               </div>
@@ -335,7 +222,7 @@ const InvoiceForm = () => {
               fullWidth
               multiline
               className='border rounded'
-              defaultValue='It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance projects. Thank You!'
+              defaultValue='Ketikan catatan disini...'
             />
           </Grid>
         </Grid>

@@ -38,7 +38,7 @@ const EditActions = ({ id }) => {
               startIcon={<i className='tabler-send' />}
               onClick={() => setSendDrawerOpen(true)}
             >
-              Send Invoice
+              Kirim Invoice
             </Button>
             <div className='flex items-center gap-4'>
               <Button

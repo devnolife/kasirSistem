@@ -18,11 +18,6 @@ const InvoicePreviewPage = () => {
     id,
     issuedDate: '2024-06-01',
     dueDate: '2024-06-15',
-    name: 'Client Name',
-    company: 'Client Company',
-    address: 'Client Address',
-    contact: 'Client Contact',
-    companyEmail: 'client@example.com'
   }
 
   return (
