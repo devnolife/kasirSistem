@@ -277,7 +277,7 @@ const UserListTable = ({ tableData }) => {
     <>
       <Card>
         <CardHeader title='List User' className='pbe-4' />
-        <div className='flex justify-between flex-col items-start md:flex-row md:items-center p-6 border-bs gap-4'>
+        <div className='flex flex-col items-start justify-between gap-4 p-6 md:flex-row md:items-center border-bs'>
           <CustomTextField
             select
             value={table.getState().pagination.pageSize}
@@ -288,7 +288,7 @@ const UserListTable = ({ tableData }) => {
             <MenuItem value='25'>25</MenuItem>
             <MenuItem value='50'>50</MenuItem>
           </CustomTextField>
-          <div className='flex flex-col sm:flex-row is-full sm:is-auto items-start sm:items-center gap-4'>
+          <div className='flex flex-col items-start gap-4 sm:flex-row is-full sm:is-auto sm:items-center'>
             <DebouncedInput
               value={globalFilter ?? ''}
               onChange={value => setGlobalFilter(String(value))}
@@ -331,8 +331,8 @@ const UserListTable = ({ tableData }) => {
                           >
                             {flexRender(header.column.columnDef.header, header.getContext())}
                             {{
-                              asc: <i className='tabler-chevron-up text-xl' />,
-                              desc: <i className='tabler-chevron-down text-xl' />
+                              asc: <i className='text-xl tabler-chevron-up' />,
+                              desc: <i className='text-xl tabler-chevron-down' />
                             }[header.column.getIsSorted()] ?? null}
                           </div>
                         </>
