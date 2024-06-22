@@ -1,10 +1,13 @@
 'use client'
 import dynamic from 'next/dynamic'
+
 import Card from '@mui/material/Card'
 import { useColorScheme, useTheme } from '@mui/material/styles'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
+
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
+
 const donutColors = {
   series1: '#fdd835',
   series2: '#00d4bd',
@@ -16,6 +19,7 @@ const PieChart = ({ serverMode }) => {
   const { mode } = useColorScheme()
   const _mode = (mode === 'system' ? serverMode : mode) || serverMode
   const textSecondary = `rgba(${theme.palette.text.secondary})`
+
   const options = {
     stroke: { width: 0 },
     labels: ['INCP', 'INVC', 'Manual'],
@@ -99,7 +103,9 @@ const PieChart = ({ serverMode }) => {
       }
     ]
   }
-  return (
+
+
+return (
     <Card>
       <CardHeader title='Distribusi Penerimaan Kasir per Jenis Nota' subheader='Proporsi penerimaan kasir' />
       <CardContent>

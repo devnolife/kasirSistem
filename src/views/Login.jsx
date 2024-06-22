@@ -86,7 +86,7 @@ const LoginV2 = ({ mode }) => {
   const handleClickShowPassword = () => setIsPasswordShown(show => !show)
 
   return (
-    <div className='flex bs-full justify-center'>
+    <div className='flex justify-center bs-full'>
       <div
         className={classnames(
           'flex bs-full items-center justify-center flex-1 min-bs-[100dvh] relative p-6 max-md:hidden',
@@ -122,7 +122,7 @@ const LoginV2 = ({ mode }) => {
             }}
             className='flex flex-col gap-5'
           >
-            <CustomTextField autoFocus fullWidth label='Email or Username' placeholder='Enter your email or username' />
+            <CustomTextField autoFocus fullWidth label='Username' placeholder='Enter your username' />
             <CustomTextField
               fullWidth
               label='Password'
@@ -139,22 +139,16 @@ const LoginV2 = ({ mode }) => {
                 )
               }}
             />
-            <div className='flex justify-between items-center gap-x-3 gap-y-1 flex-wrap'>
-              <FormControlLabel control={<Checkbox />} label='Remember me' />
+            <div className='flex flex-wrap items-center justify-between gap-x-3 gap-y-1'>
               <Typography className='text-end' color='primary' component={Link}>
-                Forgot password?
+                Lupa password?
               </Typography>
             </div>
             <Button fullWidth variant='contained' type='submit'>
               Login
             </Button>
-            <div className='flex justify-center items-center flex-wrap gap-2'>
-              <Typography>New on our platform?</Typography>
-              <Typography component={Link} color='primary'>
-                Create an account
-              </Typography>
-            </div>
-            <Divider className='gap-2 text-textPrimary'>or</Divider>
+
+            <Divider className='gap-2 text-textPrimary'>about me</Divider>
             <div className='flex justify-center items-center gap-1.5'>
               <IconButton className='text-facebook' size='small'>
                 <i className='tabler-brand-facebook-filled' />
@@ -165,9 +159,7 @@ const LoginV2 = ({ mode }) => {
               <IconButton className='text-textPrimary' size='small'>
                 <i className='tabler-brand-github-filled' />
               </IconButton>
-              <IconButton className='text-error' size='small'>
-                <i className='tabler-brand-google-filled' />
-              </IconButton>
+
             </div>
           </form>
         </div>
