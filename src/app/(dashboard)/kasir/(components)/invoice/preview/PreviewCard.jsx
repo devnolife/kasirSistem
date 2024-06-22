@@ -58,16 +58,16 @@ const PreviewCard = ({ invoiceData, id }) => {
                     <Logo />
                   </div>
                   <div>
-                    <Typography color='text.primary'>Office 149, 450 South Brand Brooklyn</Typography>
-                    <Typography color='text.primary'>San Diego County, CA 91905, USA</Typography>
-                    <Typography color='text.primary'>+1 (123) 456 7891, +44 (876) 543 2198</Typography>
+                    <Typography color='text.primary' className='text-[11px]'>Office 149, 450 South Brand Brooklyn</Typography>
+                    <Typography color='text.primary' className='text-[11px]'>San Diego County, CA 91905, USA</Typography>
+                    <Typography color='text.primary' className='text-[11px]'>+1 (123) 456 7891, +44 (876) 543 2198</Typography>
                   </div>
                 </div>
                 <div className='flex flex-col gap-6'>
                   <Typography variant='h5'>{`Invoice #${id}`}</Typography>
                   <div className='flex flex-col gap-1'>
-                    <Typography color='text.primary'>{`Date Issued: ${invoiceData.issuedDate}`}</Typography>
-                    <Typography color='text.primary'>{`Date Due: ${invoiceData.dueDate}`}</Typography>
+                    <Typography color='text.primary'>{`Tanggal Terbit: ${invoiceData.issuedDate}`}</Typography>
+                    <Typography color='text.primary'>{`Jatuh Tempo: ${invoiceData.dueDate}`}</Typography>
                   </div>
                 </div>
               </div>
@@ -92,7 +92,7 @@ const PreviewCard = ({ invoiceData, id }) => {
               <Grid item xs={12} sm={6}>
                 <div className='flex flex-col gap-4'>
                   <Typography className='font-medium' color='text.primary'>
-                    Bill To:
+                    Pembayaran Ke:
                   </Typography>
                   <div>
                     <div className='flex items-center gap-4'>

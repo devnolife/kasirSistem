@@ -3,9 +3,6 @@
 // React Imports
 import { useState } from 'react'
 
-import InputLabel from '@mui/material/InputLabel';
-
-
 // MUI Imports
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -18,6 +15,7 @@ import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 import Button from '@mui/material/Button'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import InputLabel from '@mui/material/InputLabel'
 
 // Component Imports
 import classnames from 'classnames'
@@ -35,6 +33,7 @@ const InvoiceForm = () => {
   const [dueDate, setDueDate] = useState(null)
   const [formData, setFormData] = useState(initialFormData)
   const [open, setOpen] = useState(false)
+  const [items, setItems] = useState([{}]) // State untuk item
   const isBelowMdScreen = useMediaQuery(theme => theme.breakpoints.down('md'))
   const isBelowSmScreen = useMediaQuery(theme => theme.breakpoints.down('sm'))
 
@@ -42,9 +41,12 @@ const InvoiceForm = () => {
     setFormData(data)
   }
 
-  const deleteForm = e => {
-    e.preventDefault()
-    e.target.closest('.repeater-item').remove()
+  const deleteForm = index => {
+    setItems(items.filter((_, i) => i !== index))
+  }
+
+  const addItem = () => {
+    setItems([...items, {}])
   }
 
   return (
@@ -59,9 +61,9 @@ const InvoiceForm = () => {
                     <Logo />
                   </div>
                   <div>
-                    <Typography color='text.primary'>Office 149, 450 South Brand Brooklyn</Typography>
-                    <Typography color='text.primary'>San Diego County, CA 91905, USA</Typography>
-                    <Typography color='text.primary'>+1 (123) 456 7891, +44 (876) 543 2198</Typography>
+                    <Typography color='text.primary' className='text-[11px]' >Office 149, 450 South Brand Brooklyn</Typography>
+                    <Typography color='text.primary' className='text-[11px]'>San Diego County, CA 91905, USA</Typography>
+                    <Typography color='text.primary' className='text-[11px]' >+1 (123) 456 7891, +44 (876) 543 2198</Typography>
                   </div>
                 </div>
                 <div className='flex flex-col gap-2'>
@@ -80,7 +82,7 @@ const InvoiceForm = () => {
                   </div>
                   <div className='flex items-center'>
                     <Typography className='min-is-[95px] mie-4' color='text.primary'>
-                      Date Issued:
+                      Tanggal Terbit:
                     </Typography>
                     <AppReactDatepicker
                       boxProps={{ className: 'is-full' }}
@@ -93,7 +95,7 @@ const InvoiceForm = () => {
                   </div>
                   <div className='flex items-center'>
                     <Typography className='min-is-[95px] mie-4' color='text.primary'>
-                      Date Due:
+                      Jatuh Tempo:
                     </Typography>
                     <AppReactDatepicker
                       boxProps={{ className: 'is-full' }}
@@ -113,7 +115,7 @@ const InvoiceForm = () => {
             <div className='flex justify-between flex-col gap-4 flex-wrap sm:flex-row'>
               <div className='flex flex-col gap-4'>
                 <Typography className='font-medium' color='text.primary'>
-                  Invoice To:
+                  Invoice Ke:
                 </Typography>
                 <CustomTextField
                   select
@@ -133,7 +135,7 @@ const InvoiceForm = () => {
                     }}
                   >
                     <i className='tabler-plus text-base' />
-                    Add New Customer
+                    Tambah Customer Baru
                   </MenuItem>
                   {fakeData.slice(0, 5).map((invoice, index) => (
                     <MenuItem key={index} value={invoice.id}>
@@ -161,20 +163,20 @@ const InvoiceForm = () => {
               </div>
               <div className='flex flex-col gap-4'>
                 <Typography className='font-medium' color='text.primary'>
-                  Bill To:
+                  Pembayaran ke:
                 </Typography>
                 <div>
                   <div className='flex items-center gap-4'>
-                    <Typography className='min-is-[100px]'>Total Due:</Typography>
-                    <Typography>$12,110.55</Typography>
+                    <Typography className='min-is-[100px]'>Total:</Typography>
+                    <Typography>Rp1.522.104.470</Typography>
                   </div>
                   <div className='flex items-center gap-4'>
-                    <Typography className='min-is-[100px]'>Bank name:</Typography>
-                    <Typography>American Bank</Typography>
+                    <Typography className='min-is-[100px]'>Nama Bank:</Typography>
+                    <Typography>BRI (BANK RAKYAT INDONESIA)</Typography>
                   </div>
                   <div className='flex items-center gap-4'>
-                    <Typography className='min-is-[100px]'>Country:</Typography>
-                    <Typography>United States</Typography>
+                    <Typography className='min-is-[100px]'>Negara:</Typography>
+                    <Typography>Indonesia</Typography>
                   </div>
                   <div className='flex items-center gap-4'>
                     <Typography className='min-is-[100px]'>IBAN:</Typography>
@@ -193,7 +195,7 @@ const InvoiceForm = () => {
             <Divider className='border-dashed' />
           </Grid>
           <Grid item xs={12}>
-            {Array.from(Array(1).keys()).map((item, index) => (
+            {items.map((item, index) => (
               <div
                 key={index}
                 className={classnames('repeater-item flex relative mbe-4 border rounded', {
@@ -258,11 +260,11 @@ const InvoiceForm = () => {
                   </Grid>
                   <Grid item md={2} xs={12}>
                     <Typography className='font-medium md:absolute md:-top-8'>Price</Typography>
-                    <Typography>$24.00</Typography>
+                    <Typography>475.000</Typography>
                   </Grid>
                 </Grid>
                 <div className='flex flex-col justify-start border-is'>
-                  <IconButton size='small' onClick={deleteForm}>
+                  <IconButton size='small' onClick={() => deleteForm(index)}>
                     <i className='tabler-x text-actionActive' />
                   </IconButton>
                 </div>
@@ -272,10 +274,10 @@ const InvoiceForm = () => {
               <Button
                 size='small'
                 variant='contained'
-                onClick={() => setCount(count + 1)}
+                onClick={addItem}
                 startIcon={<i className='tabler-plus' />}
               >
-                Add Item
+                Tambah Item
               </Button>
             </Grid>
           </Grid>
@@ -287,7 +289,7 @@ const InvoiceForm = () => {
               <div className='flex flex-col gap-4 order-2 sm:order-[unset]'>
                 <div className='flex items-center gap-2'>
                   <Typography className='font-medium' color='text.primary'>
-                    Salesperson:
+                    Sales:
                   </Typography>
                   <CustomTextField defaultValue='Tommy Shelby' />
                 </div>
@@ -297,17 +299,17 @@ const InvoiceForm = () => {
                 <div className='flex items-center justify-between'>
                   <Typography>Subtotal:</Typography>
                   <Typography className='font-medium' color='text.primary'>
-                    $1800
+                    Rp16.650.230
                   </Typography>
                 </div>
                 <div className='flex items-center justify-between'>
-                  <Typography>Discount:</Typography>
+                  <Typography>Diskon:</Typography>
                   <Typography className='font-medium' color='text.primary'>
-                    $28
+                    Rp230.000
                   </Typography>
                 </div>
                 <div className='flex items-center justify-between'>
-                  <Typography>Tax:</Typography>
+                  <Typography>Pajak:</Typography>
                   <Typography className='font-medium' color='text.primary'>
                     21%
                   </Typography>
@@ -316,7 +318,7 @@ const InvoiceForm = () => {
                 <div className='flex items-center justify-between'>
                   <Typography>Total:</Typography>
                   <Typography className='font-medium' color='text.primary'>
-                    $1690
+                    Rp16.880.230
                   </Typography>
                 </div>
               </div>
@@ -327,7 +329,7 @@ const InvoiceForm = () => {
           </Grid>
           <Grid item xs={12}>
             <InputLabel htmlFor='invoice-note' className='inline-flex mbe-1 text-textPrimary'>
-              Note:
+              Catatan:
             </InputLabel>
             <CustomTextField
               id='invoice-note'
@@ -335,7 +337,7 @@ const InvoiceForm = () => {
               fullWidth
               multiline
               className='border rounded'
-              defaultValue='It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance projects. Thank You!'
+              defaultValue='Senang bekerja dengan Anda dan tim Anda. Kami harap Anda mengingat kami untuk proyek freelance di masa depan. Terima kasih!!'
             />
           </Grid>
         </Grid>

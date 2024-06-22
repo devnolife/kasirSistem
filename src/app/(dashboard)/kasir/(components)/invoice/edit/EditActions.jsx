@@ -17,8 +17,8 @@ import MenuItem from '@mui/material/MenuItem'
 import Switch from '@mui/material/Switch'
 
 // Component Imports
-import AddPaymentDrawer from '@/app/(dashboard)/kasir/invoice/shared/AddPaymentDrawer'
-import SendInvoiceDrawer from '@/app/(dashboard)/kasir/invoice/shared/SendInvoiceDrawer'
+import AddPaymentDrawer from '@/app/(dashboard)/kasir/(components)/invoice/shared/AddPaymentDrawer'
+import SendInvoiceDrawer from '@/app/(dashboard)/kasir/(components)/invoice/shared/SendInvoiceDrawer'
 import CustomTextField from '@core/components/mui/TextField'
 
 const EditActions = ({ id }) => {

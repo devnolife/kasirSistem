@@ -13,8 +13,8 @@ import CardContent from '@mui/material/CardContent'
 import Button from '@mui/material/Button'
 
 // Component Imports
-import AddPaymentDrawer from '@/app/(dashboard)/kasir/invoice/shared/AddPaymentDrawer'
-import SendInvoiceDrawer from '@/app/(dashboard)/kasir/invoice/shared/SendInvoiceDrawer'
+import AddPaymentDrawer from '@/app/(dashboard)/kasir/(components)/invoice/shared/AddPaymentDrawer'
+import SendInvoiceDrawer from '@/app/(dashboard)/kasir/(components)/invoice/shared/SendInvoiceDrawer'
 
 const PreviewActions = ({ id }) => {
   const [paymentDrawerOpen, setPaymentDrawerOpen] = useState(false)
