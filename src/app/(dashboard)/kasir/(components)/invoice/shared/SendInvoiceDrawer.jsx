@@ -18,14 +18,14 @@ import CustomTextField from '@core/components/mui/TextField'
 const initialData = {
   from: 'shelbyComapny@email.com',
   to: 'qConsolidated@email.com',
-  subject: 'Invoice of purchased Admin Templates',
-  message: `Dear Queen Consolidated,
+  subject: 'Invoice Admin',
+  message: `Kepada Konsultant, Yth,
 
-Thank you for your business, always a pleasure to work with you!
+Terima kasih atas bisnis Anda, selalu senang bekerja sama dengan Anda!
 
-We have generated a new invoice in the amount of $95.59
+Kami telah membuat faktur baru sebesar Rp1.583.970
 
-We would appreciate payment of this invoice by 05/11/2019`
+Kami akan menghargai pembayaran faktur ini selambat-lambatnya tanggal 11/05/2019`
 }
 
 const SendInvoiceDrawer = ({ open, handleClose }) => {
@@ -53,7 +53,7 @@ const SendInvoiceDrawer = ({ open, handleClose }) => {
       sx={{ '& .MuiDrawer-paper': { width: { xs: 300, sm: 400 } } }}
     >
       <div className='flex items-center justify-between plb-5 pli-6'>
-        <Typography variant='h5'>Send Invoice</Typography>
+        <Typography variant='h5'>Kirim Invoice</Typography>
         <IconButton onClick={handleReset}>
           <i className='tabler-x text-textPrimary' />
         </IconButton>
@@ -63,14 +63,14 @@ const SendInvoiceDrawer = ({ open, handleClose }) => {
         <form onSubmit={handleSubmit} className='flex flex-col items-start gap-6'>
           <CustomTextField
             fullWidth
-            label='From'
+            label='Dari'
             variant='outlined'
             value={formData.from}
             onChange={e => setFormData({ ...formData, from: e.target.value })}
           />
           <CustomTextField
             fullWidth
-            label='To'
+            label='Kepada'
             variant='outlined'
             value={formData.to}
             onChange={e => setFormData({ ...formData, to: e.target.value })}
@@ -84,7 +84,7 @@ const SendInvoiceDrawer = ({ open, handleClose }) => {
           />
           <CustomTextField
             fullWidth
-            label='Message'
+            label='Pesan'
             variant='outlined'
             multiline
             rows={10}
@@ -101,10 +101,10 @@ const SendInvoiceDrawer = ({ open, handleClose }) => {
           />
           <div className='flex items-center gap-4'>
             <Button variant='contained' color='primary' type='submit'>
-              Send
+              Kirim
             </Button>
             <Button variant='tonal' color='error' type='reset' onClick={handleReset}>
-              Cancel
+              Batal
             </Button>
           </div>
         </form>

@@ -66,14 +66,13 @@ const PreviewCard = ({ invoiceData, id }) => {
                 <div className='flex flex-col gap-6'>
                   <Typography variant='h5'>{`Invoice #${id}`}</Typography>
                   <div className='flex flex-col gap-1'>
-                    <Typography color='text.primary'>{`Date Issued: ${invoiceData.issuedDate}`}</Typography>
-                    <Typography color='text.primary'>{`Date Due: ${invoiceData.dueDate}`}</Typography>
+                    <Typography color='text.primary'>{`Tanggal Terbit: ${invoiceData.issuedDate}`}</Typography>
+                    <Typography color='text.primary'>{`Jatuh Tempo: ${invoiceData.dueDate}`}</Typography>
                   </div>
                 </div>
               </div>
             </div>
           </Grid>
-
           <Grid item xs={12}>
             <div className='overflow-x-auto border rounded'>
               <table className={tableStyles.table}>

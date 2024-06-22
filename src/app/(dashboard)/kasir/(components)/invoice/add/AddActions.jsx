@@ -17,7 +17,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 import Divider from '@mui/material/Divider'
 
 // Component Imports
-import SendInvoiceDrawer from '@/app/(dashboard)/kasir/invoice/shared/SendInvoiceDrawer'
+import SendInvoiceDrawer from '@/app/(dashboard)/kasir/(components)/invoice/shared/SendInvoiceDrawer'
 import CustomTextField from '@core/components/mui/TextField'
 
 const InvoiceActions = () => {
@@ -68,39 +68,39 @@ const InvoiceActions = () => {
             >
               Preview
             </Button>
+            <Button fullWidth color='secondary' variant='tonal' className='capitalize'>
+              Save
+            </Button>
           </CardContent>
         </Card>
         <SendInvoiceDrawer open={sendDrawerOpen} handleClose={() => setSendDrawerOpen(false)} />
       </Grid>
       <Grid item xs={12}>
-        <Card>
-          <CardContent>
-            <Typography variant='h6' gutterBottom>
-              Input Pecahan Uang Awal
-            </Typography>
-            <Grid container>
-              {pecahan.map((item, index) => (
-                <Grid item xs={8} sm={3} md={12} key={index}>
-                  <CustomTextField
-                    label={`Pecahan ${item.denomination}`}
-                    type='number'
-                    value={item.quantity}
-                    onChange={e => handleQuantityChange(index, parseInt(e.target.value))}
-                    fullWidth
-                    InputProps={{
-                      endAdornment: <InputAdornment position='end'>qty</InputAdornment>
-                    }}
-                  />
-                  <Typography
-                    className='text-right'
-                  >Total: Rp.{item.total.toLocaleString()}</Typography>
-                </Grid>
-              ))}
-            </Grid>
-            <Divider className='my-3' />
-            <Typography variant='h6'>Total Uang Awal: Rp.{totalUangAwal.toLocaleString()}</Typography>
-          </CardContent>
-        </Card>
+        <CustomTextField select fullWidth defaultValue='Internet Banking' label='Accept payments via'>
+          <MenuItem value='Internet Banking'>Internet Banking</MenuItem>
+          <MenuItem value='Debit Card'>Debit Card</MenuItem>
+          <MenuItem value='Credit Card'>Credit Card</MenuItem>
+          <MenuItem value='Paypal'>Paypal</MenuItem>
+          <MenuItem value='UPI Transfer'>UPI Transfer</MenuItem>
+        </CustomTextField>
+        <div className='flex items-center justify-between mbs-3'>
+          <InputLabel htmlFor='invoice-edit-payment-terms' className='cursor-pointer'>
+            Payment Terms
+          </InputLabel>
+          <Switch defaultChecked id='invoice-edit-payment-terms' />
+        </div>
+        <div className='flex items-center justify-between'>
+          <InputLabel htmlFor='invoice-edit-client-notes' className='cursor-pointer'>
+            Client Notes
+          </InputLabel>
+          <Switch id='invoice-edit-client-notes' />
+        </div>
+        <div className='flex items-center justify-between'>
+          <InputLabel htmlFor='invoice-edit-payment-stub' className='cursor-pointer'>
+            Payment Stub
+          </InputLabel>
+          <Switch id='invoice-edit-payment-stub' />
+        </div>
       </Grid>
     </Grid>
   )

@@ -20,10 +20,10 @@ export const initialFormData = {
   company: '',
   email: '',
   address: '',
-  country: 'USA',
+  country: 'Indonesia',
   contactNumber: ''
 }
-const countries = ['USA', 'UK', 'Russia', 'Australia', 'Canada']
+const countries = ['USA', 'UK', 'Russia', 'Australia', 'Canada', 'Indonesia']
 
 const AddCustomerDrawer = ({ open, setOpen, onFormSubmit }) => {
   // States
@@ -62,14 +62,14 @@ const AddCustomerDrawer = ({ open, setOpen, onFormSubmit }) => {
           <CustomTextField
             fullWidth
             id='name'
-            label='Name'
+            label='Nama'
             value={data.name}
             onChange={e => setData({ ...data, name: e.target.value })}
           />
           <CustomTextField
             fullWidth
             id='company'
-            label='Company'
+            label='Perusahaan'
             value={data.company}
             onChange={e => setData({ ...data, company: e.target.value })}
           />
@@ -85,14 +85,14 @@ const AddCustomerDrawer = ({ open, setOpen, onFormSubmit }) => {
             multiline
             fullWidth
             id='address'
-            label='Address'
+            label='Alamat'
             value={data.address}
             onChange={e => setData({ ...data, address: e.target.value })}
           />
           <CustomTextField
             select
             id='country'
-            label='Country'
+            label='Negara'
             name='country'
             variant='outlined'
             value={data?.country?.toLowerCase().replace(/\s+/g, '-') || ''}
@@ -108,16 +108,16 @@ const AddCustomerDrawer = ({ open, setOpen, onFormSubmit }) => {
             fullWidth
             id='contact'
             type='number'
-            label='Contact Number'
+            label='Nomor HP'
             value={data.contactNumber}
             onChange={e => setData({ ...data, contactNumber: e.target.value })}
           />
           <div className='flex items-center gap-4'>
             <Button variant='contained' type='submit'>
-              Add
+              Tambah
             </Button>
             <Button variant='tonal' color='error' type='reset' onClick={handleReset}>
-              Cancel
+              Batal
             </Button>
           </div>
         </form>

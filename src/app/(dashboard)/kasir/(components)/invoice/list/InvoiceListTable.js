@@ -33,7 +33,7 @@ import TablePaginationComponent from '@components/TablePaginationComponent'
 import CustomTextField from '@core/components/mui/TextField'
 import tableStyles from '@core/styles/table.module.css'
 
-import fakeData from '../../../../../../data/fakedata'
+import fakeData from '@/data/fakedata'
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
   const itemRank = rankItem(row.getValue(columnId), value)
@@ -107,7 +107,7 @@ const InvoiceListTable = () => {
         cell: ({ row }) => (
           <Typography
             component={Link}
-            href={`/apps/invoice/preview/${row.original.id}`}
+            href={`/kasir/invoice/preview/${row.original.id}`}
             color='primary'
           >{`#${row.original.id}`}</Typography>
         )
@@ -242,7 +242,7 @@ const InvoiceListTable = () => {
       <CardContent className='flex flex-wrap items-start justify-between gap-4'>
         <div className='flex items-center justify-between gap-4'>
           <div className='flex items-center gap-2'>
-            <Typography className='hidden sm:block'>Show</Typography>
+            <Typography className='hidden sm:block'>Lihat</Typography>
             <CustomTextField
               select
               value={table.getState().pagination.pageSize}
@@ -268,7 +268,7 @@ const InvoiceListTable = () => {
           <DebouncedInput
             value={globalFilter ?? ''}
             onChange={value => setGlobalFilter(String(value))}
-            placeholder='Search Invoice'
+            placeholder='Cari Invoice'
             className='is-[250px]'
           />
           <CustomTextField
@@ -316,11 +316,11 @@ const InvoiceListTable = () => {
           </thead>
           {table.getFilteredRowModel().rows.length === 0 ? (
             <tbody>
-              <tr>
-                <td colSpan={table.getVisibleFlatColumns().length} className='text-center'>
-                  No data available
-                </td>
-              </tr>
+            <tr>
+              <td colSpan={table.getVisibleFlatColumns().length} className='text-center'>
+                Tidak ada data yang bisa di tampilkan
+              </td>
+            </tr>
             </tbody>
           ) : (
             <tbody>
